@@ -37,6 +37,13 @@ public class MyProgram {
         return 0;
     }
 
+    private static void performOperation(Stack<Float> operands, Stack<Character> operators) {
+        char operator = operators.pop();
+        float operand1 = operands.pop(), operand2 = operands.pop();
+        float result = calc(operand2, operand1, operator);
+        operands.push(result);
+    }
+
     public static void main(String[] args) {
         String expression = "";
         System.out.print("Nhap bieu thuc: ");
@@ -70,10 +77,7 @@ public class MyProgram {
 
             if (symbol == ')') {
                 while (operators.peek() != '(') {
-                    char operator = operators.pop();
-                    float operand1 = operands.pop(), operand2 = operands.pop();
-                    float result = calc(operand2, operand1, operator);
-                    operands.push(result);
+                    performOperation(operands, operators);
                 }
                 operators.pop();
                 continue;
@@ -81,10 +85,7 @@ public class MyProgram {
 
             if (isOperator(symbol)) {
                 while (!operators.empty() && getPrecendence(operators.peek()) >= getPrecendence(symbol)) {
-                    char operator = operators.pop();
-                    float operand1 = operands.pop(), operand2 = operands.pop();
-                    float result = calc(operand2, operand1, operator);
-                    operands.push(result);
+                    performOperation(operands, operators);
                 }
                 operators.push(symbol);
                 continue;
@@ -92,10 +93,7 @@ public class MyProgram {
         }
 
         while (!operators.empty()) {
-            char operator = operators.pop();
-            float operand1 = operands.pop(), operand2 = operands.pop();
-            float result = calc(operand2, operand1, operator);
-            operands.push(result);
+            performOperation(operands, operators);
         }
 
         System.out.println(operands.pop());
