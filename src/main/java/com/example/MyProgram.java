@@ -6,7 +6,7 @@ import java.util.Stack;
 // Referenced algorithm: https://www.geeksforgeeks.org/expression-evaluation/
 
 public class MyProgram {
-    private static float calc(float a, float b, char operator) {
+    public static float calc(float a, float b, char operator) {
         switch (operator) {
             case '+':
                 return a + b;
@@ -20,14 +20,14 @@ public class MyProgram {
         return 0;
     }
 
-    private static boolean isOperator(char symbol) {
+    public static boolean isOperator(char symbol) {
         if (symbol != '+' && symbol != '-' && symbol != '*' && symbol != '/') {
             return false;
         }
         return true;
     }
 
-    private static int getPrecendence(char operator) {
+    public static int getPrecendence(char operator) {
         if (operator == '+' || operator == '-') {
             return 1;
         }
@@ -37,7 +37,7 @@ public class MyProgram {
         return 0;
     }
 
-    private static void performOperation(Stack<Float> operands, Stack<Character> operators) {
+    public static void performOperation(Stack<Float> operands, Stack<Character> operators) {
         char operator = operators.pop();
         float operand1 = operands.pop(), operand2 = operands.pop();
         float result = calc(operand2, operand1, operator);
