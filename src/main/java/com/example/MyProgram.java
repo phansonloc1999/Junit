@@ -49,6 +49,8 @@ public class MyProgram {
         System.out.print("Nhap bieu thuc: ");
         Scanner scanner = new Scanner(System.in);
         expression = scanner.nextLine();
+        // Append a space to avoid index out of range when parsing symbol
+        expression += ' ';
 
         Stack<Float> operands = new Stack<>();
         Stack<Character> operators = new Stack<>();
