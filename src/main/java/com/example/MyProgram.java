@@ -54,11 +54,12 @@ public class MyProgram {
         Stack<Character> operators = new Stack<>();
         for (int i = 0; i < expression.length(); i++) {
             char symbol = expression.charAt(i);
+            char nextSymbol = expression.charAt(i + 1);
 
             if (symbol == ' ')
                 continue;
 
-            if (Character.isDigit(symbol)) {
+            if (Character.isDigit(symbol) || (symbol == '-' && Character.isDigit(nextSymbol))) {
                 String operand = "";
                 do {
                     operand += symbol;
